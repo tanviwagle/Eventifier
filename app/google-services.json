@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "77497295223",
+    "firebase_url": "https://eventifier-d889a.firebaseio.com",
+    "project_id": "eventifier-d889a",
+    "storage_bucket": "eventifier-d889a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77497295223:android:77e7b265e8cf3cd8d9c172",
+        "android_client_info": {
+          "package_name": "com.example.eventifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77497295223-84es3bcpvnh892ii04cpn7gg3k6hmt5a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eventifier",
+            "certificate_hash": "75e974d79785df9b3992f1193b34344980e2627b"
+          }
+        },
+        {
+          "client_id": "77497295223-e1p9c8th6n4mua6fk4hsl9s029o9dnc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcD7Zq1lSHLYMVzIKMaSkvgqmS1NdHlLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77497295223-e1p9c8th6n4mua6fk4hsl9s029o9dnc3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
