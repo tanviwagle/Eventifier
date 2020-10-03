@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 
@@ -54,8 +55,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             Bundle bundle=new Bundle();
-            bundle.putString("id", getIntent().getStringExtra("id"));
-            new fragment_profile().setArguments(bundle);
+            bundle.putString("sap_id", getIntent().getStringExtra("sap_id"));
+            Log.d("mainactivityid",getIntent().getStringExtra("sap_id"));
+            fragment.setArguments(bundle);
         }
 
         return false;

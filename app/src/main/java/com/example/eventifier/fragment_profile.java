@@ -11,10 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +24,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class fragment_profile extends Fragment {
 
     Toolbar toolbar;
-
-    EditText sap_id, name, pwd, email, stream;
-
+    TextView sap_id, name, stream;
+    EditText  pwd, email;
     DatabaseReference reff;
     Intent intent;
 
@@ -39,30 +42,29 @@ public class fragment_profile extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        final long id = Long.parseLong(getActivity().getIntent().getStringExtra("id"));
+        final String sid = this.getArguments().getString("sap_id");
+        Log.d("final",sid);
         toolbar = root.findViewById(R.id.toolbar);
-        sap_id = root.findViewById(R.id.sap);
-        name = root.findViewById(R.id.name);
+        sap_id = root.findViewById(R.id.tvsap);
+        name = root.findViewById(R.id.tvname);
         pwd = root.findViewById(R.id.pwd);
         email = root.findViewById(R.id.email);
-        stream = root.findViewById(R.id.stream);
-
+        stream = root.findViewById(R.id.tvstream);
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
-        reff.addValueEventListener(new ValueEventListener() {
+        Log.d("child",reff.child(sid).toString());
+        reff.child(sid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    Users user = snap.getValue(Users.class);
-                    if(id == user.getSap()){
-                        sap_id.setText(""+id);
-                        name.setText(""+user.getName());
-                        pwd.setText(""+user.getPassword());
-                        email.setText(""+user.getEmail());
-                        stream.setText(""+user.getStream());
-                        break;
+                if(snapshot.exists()){
+                        sap_id.setText(""+sid);
+                        name.setText(""+snapshot.child("name").getValue());
+                        pwd.setText(""+snapshot.child("password").getValue());
+                        email.setText(""+snapshot.child("email").getValue());
+                        stream.setText(""+snapshot.child("stream").getValue());
+
                     }
                 }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

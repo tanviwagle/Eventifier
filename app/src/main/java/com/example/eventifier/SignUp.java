@@ -108,7 +108,7 @@ public class SignUp extends AppCompatActivity {
                 boolean result =  !TextUtils.isEmpty(em) && android.util.Patterns.EMAIL_ADDRESS.matcher(em).matches();
 
                 if (!TextUtils.isEmpty(sap.getText().toString()) && !TextUtils.isEmpty(n) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(cnfPwd) && !TextUtils.isEmpty(stYear)) {
-                    Long sap_id = Long.parseLong(sap.getText().toString());
+                    String sap_id = sap.getText().toString();
                     if ("true".equals("" + result)) {
                         if (pwd.equals(cnfPwd)) {
 
@@ -118,7 +118,7 @@ public class SignUp extends AppCompatActivity {
                             u.setPassword(pwd);
                             u.setSap(sap_id);
                             u.setStream(stYear);
-                            reff.child("user " + id).setValue(u);
+                            reff.child(""+sap_id).setValue(u);
                             startActivity(new Intent(getApplicationContext(), Login.class));
 
                         }

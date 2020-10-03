@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_home"
-    android:background="@drawable/background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment_home">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <androidx.appcompat.widget.Toolbar
@@ -19,7 +17,8 @@
         android:layout_alignParentTop="true"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:background="#000"
+        android:background="@drawable/background"
+
         tools:targetApi="lollipop"
         android:layout_alignParentLeft="true">
 
@@ -28,27 +27,24 @@
             android:layout_height="wrap_content"
             android:text="HOME"
             android:textStyle="bold"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textSize="20sp"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="https://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
+        android:orientation="horizontal"
         tools:context=".MainActivity"
         >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     </RelativeLayout>

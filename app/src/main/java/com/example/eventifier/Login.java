@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -60,7 +61,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 if(!TextUtils.isEmpty(sap_id.getText().toString()) && !TextUtils.isEmpty(password.getText().toString())) {
 
-                    long sap = Long.parseLong(sap_id.getText().toString());
+                    String sap = sap_id.getText().toString();
                     String pass = password.getText().toString();
                     dataValidate(sap, pass);
                 }
@@ -78,28 +79,27 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void dataValidate(final long s, final String p){
+    public void dataValidate(final String s, final String p){
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
-        final Boolean[] found = {false};
-        reff.addValueEventListener(new ValueEventListener() {
+        reff.child(s).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    Users user = snap.getValue(Users.class);
-                    if(p.equals(user.getPassword()) && s == user.getSap()){
+                if(snapshot.exists()){
+                    if (p.equals(snapshot.child("password").getValue().toString())){
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        i.putExtra("id", sap_id.getText().toString());
+                        i.putExtra("sap_id",s);
+                        Log.d("sap_id",s);
                         startActivity(i);
-                        found[0] = true;
-                        finish();
-                        break;
                     }
-
+                    else{
+                        password.setText("");
+                        Toast.makeText(Login.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                if(!found[0]){
+                else{
                     sap_id.setText("");
                     password.setText("");
-                    Toast.makeText(Login.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "User does not exist", Toast.LENGTH_SHORT).show();
                 }
             }
 

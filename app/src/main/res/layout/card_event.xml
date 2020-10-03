@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv"
+        android:orientation="horizontal"
+        app:cardCornerRadius="12sp"
+        android:layout_margin="10sp"
+        android:elevation="100sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/name"
+                    android:hint="name"
+                    android:layout_alignParentTop="true"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cat"
+                    android:hint="Category"
+                    android:layout_marginTop="10sp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/desc"
+                    android:textSize="15sp"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="192sp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10sp"
+                android:id="@+id/cardImage"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -2,41 +2,38 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment_events"
-    android:background="@drawable/background">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment_home">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:background="#000"
-        tools:targetApi="lollipop"
-        android:layout_alignParentLeft="true">
-
-        <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EVENTS"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:background="@drawable/background"
+
+            tools:targetApi="lollipop"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EVENTS"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+        </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="https://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
@@ -44,12 +41,11 @@
             >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/my_recycler_view"
+                android:id="@+id/recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical"
-                />
+                android:layout_height="wrap_content"/>
         </LinearLayout>
+
 
     </RelativeLayout>
 </FrameLayout>

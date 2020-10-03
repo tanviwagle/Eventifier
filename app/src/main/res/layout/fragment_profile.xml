@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment_profile">
 
+
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background">
+        android:layout_height="wrap_content">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -20,7 +20,6 @@
         android:layout_alignParentTop="true"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:background="#000"
         tools:targetApi="lollipop"
         android:layout_alignParentLeft="true">
 
@@ -29,173 +28,172 @@
             android:layout_height="wrap_content"
             android:text="PROFILE"
             android:textStyle="bold"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textSize="20sp"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+    </View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerHorizontal="true">
-        <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="75sp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center">
+            android:layout_marginTop="30dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/demoface"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                android:layout_centerHorizontal="true"
+                android:elevation="1dp"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="65dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/signin"
-                    android:src="@drawable/profile" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="85dp"
+                    app:contentPaddingTop="15dp"
+                    app:contentPaddingRight="15dp"
+                    app:contentPaddingLeft="15dp"
+                    app:contentPaddingBottom="15dp"
+                    app:cardCornerRadius="50dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NAME"
+                            android:layout_below="@+id/sap"
+                            android:textColor="@android:color/black"
+                            android:textSize="25dp"
+                            android:layout_marginTop="60sp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvsap"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5sp"
+                            android:text="SAP ID"
+                            android:textColor="@color/grey"
+                            android:textSize="17dp"
+                            android:layout_gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tvstream"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5sp"
+                            android:text="STREAM"
+                            android:layout_below="@+id/pwd"
+                            android:textColor="@color/grey"
+                            android:textSize="17dp"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/tvemail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/name"
+                                android:layout_marginLeft="20sp"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginRight="20sp"
+                                android:layout_weight="0.5"
+                                android:text="EMAIL"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/email"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvemail"
+                                android:layout_marginTop="5sp"
+                                android:enabled="false"
+                                android:drawablePadding="8dp"
+                                android:drawableRight="@drawable/arrow"
+                                android:layout_marginLeft="20sp"
+                                android:layout_marginRight="20sp"
+                                android:textColorHint="#606060"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/tvpwd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:text="PASSWORD"
+                                android:layout_below="@+id/email"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:layout_marginLeft="10sp"
+                                android:layout_marginRight="10sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/pwd"
+                                android:layout_marginTop="5sp"
+                                android:layout_below="@+id/tvpwd"
+                                android:enabled="false"
+                                android:textSize="14sp"
+                                android:drawablePadding="8dp"
+                                android:drawableRight="@drawable/arrow"
+                                android:textColorHint="#606060"
+                                android:layout_marginLeft="10sp"
+                                android:layout_marginRight="10sp"
+                                android:inputType="textPassword"/>
+                        </LinearLayout>
+                                            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:orientation="vertical"
-                android:background="@drawable/ic_profile_bg"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/tvsap"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30sp"
-                    android:text="SAP ID"
-                    android:textColor="@android:color/black"
-                    android:textSize="14dp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sap"
-                    android:layout_marginTop="5sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_below="@+id/tvsap"
-                    android:textColorHint="#606060"
-                    android:inputType="number"/>
-
-                <TextView
-                    android:id="@+id/tvname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="NAME"
-                    android:layout_below="@+id/sap"
-                    android:textColor="@android:color/black"
-                    android:textSize="14dp"
-                    android:layout_marginTop="5sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/name"
-                    android:layout_below="@+id/tvname"
-                    android:textSize="14sp"
-                    android:layout_marginTop="5sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textColorHint="#606060" />
-
-                <TextView
-                    android:id="@+id/tvemail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:text="EMAIL"
-                    android:textColor="@android:color/black"
-                    android:textSize="14dp"
-                    android:layout_below="@+id/name"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvemail"
-                    android:layout_marginTop="5sp"
-                    android:inputType="number"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textColorHint="#606060"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/tvpwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:text="PASSWORD"
-                    android:layout_below="@+id/email"
-                    android:textColor="@android:color/black"
-                    android:textSize="14dp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pwd"
-                    android:layout_marginTop="5sp"
-                    android:layout_below="@+id/tvpwd"
-                    android:textSize="14sp"
-                    android:textColorHint="#606060"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:inputType="textPassword"/>
-                <TextView
-                    android:id="@+id/tvstream"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:text="STREAM"
-                    android:layout_below="@+id/pwd"
-                    android:textColor="@android:color/black"
-                    android:textSize="14dp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/stream"
-                    android:layout_marginTop="5sp"
-                    android:layout_below="@+id/tvstream"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginRight="20sp"
-                    android:textSize="14sp"
-                    android:textColorHint="#606060"
-                    android:inputType="number"/>
-
-
-            </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-
-    </RelativeLayout>
-</FrameLayout>
+</RelativeLayout>

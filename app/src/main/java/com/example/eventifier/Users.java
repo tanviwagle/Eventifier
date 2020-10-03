@@ -5,18 +5,18 @@ package com.example.eventifier;
 
 public class Users {
 
-    private Long sap;
-    private String name, email, password, cfnPass, stream;
+
+    private String sap, name, email, password, cfnPass, stream;
 
     public Users() {
     }
 
 
-    public Long getSap() {
+    public String getSap() {
         return sap;
     }
 
-    public void setSap(Long sap) {
+    public void setSap(String sap) {
         this.sap = sap;
     }
 
