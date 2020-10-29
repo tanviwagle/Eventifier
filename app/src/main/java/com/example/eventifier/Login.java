@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-
+        Log.d("LoginCalled","Called");
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +80,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void dataValidate(final String s, final String p){
+        Log.d("DataValidate","DataValidate");
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
         reff.child(s).addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,11 +90,15 @@ public class Login extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         i.putExtra("sap_id",s);
                         Log.d("sap_id",s);
+                        Log.d("pass",p);
                         startActivity(i);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
+
                     }
                     else{
                         password.setText("");
-                        Toast.makeText(Login.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                        password.setError("Incorrect password");
                     }
                 }
                 else{

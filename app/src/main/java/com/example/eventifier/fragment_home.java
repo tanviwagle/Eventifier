@@ -31,6 +31,7 @@ public class fragment_home extends Fragment {
     FirebaseRecyclerAdapter<Events, EventViewHolder> adapter;
     DatabaseReference reff;
     Fragment f = null;
+    String sap_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +43,7 @@ public class fragment_home extends Fragment {
         llm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(false);
-
+        sap_id = this.getArguments().getString("sap_id");
         reff = FirebaseDatabase.getInstance().getReference().child("Events");
 
         loadData();
@@ -66,6 +67,7 @@ public class fragment_home extends Fragment {
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, f).commit();
                         Bundle bundle=new Bundle();
                         bundle.putString("id", getRef(position).getKey());
+                        bundle.putString("sap_id",sap_id);
                         Log.d("id",getRef(position).getKey());
                         f.setArguments(bundle);
                     }

@@ -106,11 +106,35 @@ public class SignUp extends AppCompatActivity {
                 String stYear = stream.getText().toString();
 
                 boolean result =  !TextUtils.isEmpty(em) && android.util.Patterns.EMAIL_ADDRESS.matcher(em).matches();
+                String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
                 if (!TextUtils.isEmpty(sap.getText().toString()) && !TextUtils.isEmpty(n) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(cnfPwd) && !TextUtils.isEmpty(stYear)) {
                     String sap_id = sap.getText().toString();
                     if ("true".equals("" + result)) {
-                        if (pwd.equals(cnfPwd)) {
+
+                        if(!pwd.matches(pattern)){
+                            pass.requestFocus();
+                            pass.setError("password must contain\nat least 8 characters\none uppercase letter, lowercase letter, number and symbol".toUpperCase());
+                        }
+
+                        else if(!cnfPwd.equals(pwd)){
+                            cnfPass.requestFocus();
+                            cnfPass.setError("PASSWORD DO NOT MATCH");
+                        }
+
+                        else if(!sap_id.matches("[0-9]+")){
+                            sap.requestFocus();
+                            sap.setError("ENTER ONLY NUMERIC CHARACTER");
+                        }
+                        else if(sap_id.length()!=11 ){
+                            sap.requestFocus();
+                            sap.setError("SAP ID SHOULD BE OF LENGTH 11");
+                        }
+                        else if(sap_id.startsWith("7")==false){
+                            sap.requestFocus();
+                            sap.setError("SAP ID SHOULD START WITH 7");
+                        }
+                        else {
 
                             /* Store in database */
                             u.setName(n);
@@ -122,12 +146,9 @@ public class SignUp extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Login.class));
 
                         }
-                        else
-                        {
-                            Toast.makeText(SignUp.this, "Password and confirm password does not match", Toast.LENGTH_LONG).show();
-                        }
                     } else {
-                        Toast.makeText(SignUp.this, "Enter correct email", Toast.LENGTH_LONG).show();
+                        email.requestFocus();
+                        email.setError("ENTER CORRECT EMAIL ID");
                     }
                 }
                 else{

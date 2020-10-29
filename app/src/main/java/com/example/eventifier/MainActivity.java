@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("InsideMain","InsideMain");
         toolbar = getSupportActionBar();
         bottomNav = findViewById(R.id.navigationView);
         loadFragment(new fragment_home());
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.profile:
                 fragment = new fragment_profile();
                 break;
+            case R.id.book_events:
+                fragment = new fragment_book_event();
+                break;
         }
         return loadFragment(fragment);
     }
@@ -56,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             Bundle bundle=new Bundle();
             bundle.putString("sap_id", getIntent().getStringExtra("sap_id"));
-            Log.d("mainactivityid",getIntent().getStringExtra("sap_id"));
             fragment.setArguments(bundle);
         }
 
         return false;
     }
+
 }

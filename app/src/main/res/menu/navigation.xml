@@ -12,6 +12,11 @@
             android:title="Events"/>
 
         <item
+            android:id="@+id/book_events"
+            android:icon="@drawable/ic_add"
+            android:title="Booked Events"/>
+
+        <item
             android:id="@+id/profile"
             android:icon="@drawable/profile"
             android:title="Profile"/>
