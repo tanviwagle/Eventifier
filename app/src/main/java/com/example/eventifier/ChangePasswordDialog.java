@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +31,7 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
 
     EditText currentPwd, newPwd, cfnPwd;
 
-    String sap;
+    String sap, pwd, pattern, newPass, confirm;
     DatabaseReference reff1;
 
     @NonNull
@@ -40,45 +42,99 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = (LayoutInflater) getTargetFragment().getLayoutInflater();
         reff1 = FirebaseDatabase.getInstance().getReference().child("Users");
         View view = inflater.inflate(R.layout.change_password_dialog, null);
+
+        currentPwd = view.findViewById(R.id.currentPwd);
+        newPwd = view.findViewById(R.id.newPwd);
+        cfnPwd = view.findViewById(R.id.cfnPwd);
+
+        currentPwd.requestFocus();
+
+        pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+
+        currentPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                final String current = currentPwd.getText().toString();
+                reff1.child(sap).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        pwd = snapshot.child("password").getValue().toString();
+                        if (!pwd.equals(current)) {
+                            currentPwd.setError("Incorrect Password");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
+
+        newPwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!newPwd.getText().toString().matches(pattern))
+                {
+                    newPwd.requestFocus();
+                    newPwd.setError("password must contain \nat least 8 characters\none uppercase letter, lowercase letter, number and symbol".toUpperCase());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        cfnPwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!cfnPwd.getText().equals(newPass))
+                {
+                    cfnPwd.requestFocus();
+                    cfnPwd.setError("Password should match with new password".toUpperCase());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         builder.setView(view)
                 .setTitle("Change Password")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dismiss();
                     }
                 })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String current = currentPwd.getText().toString();
-                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                // do some stuff once
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                            });
-                        /*if(current.equals(reff1.child(sap).child(sap).child("password"))){
-                            Toast.makeText(getContext(), "Yessssss", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                        String newPass = newPwd.getText().toString();
-                        String confirm = cfnPwd.getText().toString();
+                        newPass = newPwd.getText().toString();
                         HashMap hashMap = new HashMap();
-                        hashMap.put("password",newPass);
+                        hashMap.put("password", newPass);
                         reff1.child(sap).updateChildren(hashMap);
-                        dismiss();}*/
+                        Toast.makeText(getContext(), "Password Changed", Toast.LENGTH_SHORT).show();
+                        dismiss();
+
                     }
                 });
-
-        currentPwd = view.findViewById(R.id.currentPwd);
-        newPwd = view.findViewById(R.id.newPwd);
-        cfnPwd = view.findViewById(R.id.cfnPwd);
 
         return builder.create();
     }
