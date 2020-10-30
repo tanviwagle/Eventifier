@@ -1,5 +1,6 @@
 package com.example.eventifier;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -38,7 +39,7 @@ public class Event_details extends Fragment{
     Book book;
     long count = 0;
 
-    String event_place, event_date, event_time;
+    String event_place, event_date, event_time, charges;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -82,6 +83,8 @@ public class Event_details extends Fragment{
                     date.setText(event_date);
                     time.setText(event_time);
                     price.setText(snapshot.child("Charges").getValue().toString()+" /-");
+
+                    charges = snapshot.child("Charges").getValue().toString();
                 }
             }
 
@@ -113,7 +116,10 @@ public class Event_details extends Fragment{
                 book.setDate(event_date);
                 book.setTime(event_time);
                 refBook.child("Event "+count).setValue(book);
-                Toast.makeText(getContext(), "Event booked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Event booked", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), payment.class);
+                i.putExtra("amount", charges);
+                startActivity(i);
             }
         });
         return root;
