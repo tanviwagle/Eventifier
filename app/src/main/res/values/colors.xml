@@ -6,4 +6,8 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="grey">#4C4C4C</color>
+    <color name="Skyblue">#add8e6</color>
+    <color name="darkgray">#6c6c6c</color>
+    <color name="tab1">#D67B5E</color>
+    <color name="tab2">#BD5331</color>
 </resources>

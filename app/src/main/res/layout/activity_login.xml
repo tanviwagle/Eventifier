@@ -92,11 +92,31 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/committee"
+                    android:text="Login as Committee"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="20dp">
+                </CheckBox>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/admin"
+                    android:text="Login as Admin"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp">
+                </CheckBox>
+
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="end"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginEnd="25dp"
                     android:id="@+id/signin"
                     android:src="@drawable/ic_arrow_forward_black_24dp"
